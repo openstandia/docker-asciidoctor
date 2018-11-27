@@ -23,9 +23,8 @@ RUN gem install --version ${COMPASS_VERSION} compass --no-ri --no-rdoc && \
     unzip master.zip && \
     cd asciidoctor-stylesheet-factory-master && \
     compass compile && \
-    mkdir -p /documents/public && \
-    cp -pr stylesheets /documents/public/ && \
-    cp -pr images /documents/public/ && \
+    mv stylesheets / && \
+    mv images / && \
     cd .. && \
     rm -rf master.zip asciidoctor-stylesheet-factory-master
    
@@ -73,6 +72,5 @@ RUN apk add --no-cache --virtual .pythonmakedepends \
 
 
 WORKDIR /documents
-VOLUME /documents
 
 CMD ["/bin/bash"]
