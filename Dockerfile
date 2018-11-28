@@ -4,6 +4,9 @@ LABEL MAINTAINERS="OpenStandia"
 # Timezone
 RUN ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
+# Adding fonts
+RUN apk add --no-cache ttf-dejavu
+
 # Adding japanese fonts
 WORKDIR /root
 RUN gem install asciidoctor-pdf-cjk-kai_gen_gothic --no-ri --no-rdoc && \
