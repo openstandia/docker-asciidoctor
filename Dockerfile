@@ -70,6 +70,12 @@ RUN apk add --no-cache --virtual .pythonmakedepends \
     awscli \
   && apk del -r --no-cache .pythonmakedepends
 
+# Adding mermaid.cli
+RUN mkdir -p /var/lib/mermaid \
+  && cd /var/lib/mermaid \
+  && npm i mermaid.cli \
+  && sed -i -e "s|let puppeteerConfig = {};|let puppeteerConfig = { args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu'], executablePath: '/usr/bin/chromium-browser' }|" ./node_modules/mermaid.cli/index.bundle.js
+ENV PATH $PATH:/var/lib/mermaid/node_modules/.bin
 
 WORKDIR /documents
 
